@@ -1,4 +1,6 @@
 // implement dark mode here
+
+
 document.getElementById('markdown-input').addEventListener('input', function() {
     const markdownText = this.value;
     fetch('/convert', {
@@ -10,6 +12,7 @@ document.getElementById('markdown-input').addEventListener('input', function() {
     })
     .then(response => response.json())
     .then(data => {
+        console.log
         document.getElementById('html-output').innerHTML = data.html;
         if (data.html.length === 0) document.getElementById('html-output').innerHTML ="Your output goes here...";
     });
