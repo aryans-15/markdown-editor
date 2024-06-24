@@ -29,9 +29,11 @@ class MarkdownParser:
     def convert_linked_images(self):
         self.text = re.sub(r'!\[(.*?)\]\((.*?)\)', r'<img src="\2" alt="\1">', self.text)
 
+    # to be done: fix issue with heading then blockquote
     def convert_blockquotes(self):
-        self.text = re.sub(r'^>(.*)$', r'<blockquote>\1</blockquote>', self.text, flags=re.MULTILINE)
+        self.text = re.sub(r'^>(.*?)\n', r'<blockquote>\1</blockquote>\n', self.text, flags=re.MULTILINE | re.DOTALL)
 
+    # line breaks are a bit iffy
     def convert_linebreaks(self):
         self.text = re.sub(r'\n', r'<br>', self.text)
         self.text = re.sub(r' \n{2,}', r'<br>', self.text)
