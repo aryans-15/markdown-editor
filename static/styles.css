@@ -10,16 +10,25 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0.25em;
 }
 
-p, blockquote {
-    margin-bottom: 2em; 
+p {
+    margin-left: 0.25em;
 }
 
 blockquote {
     margin: 0;
     padding: 2px;
     padding-left: 10px;
+    padding-bottom: 0px;
+    margin-bottom: 2px;
     border-left: 5px solid #ccc;
 } 
+
+button {
+    outline: none;
+    background-color: transparent;
+    border: none;
+    color: inherit;
+}
 
 .modal-header .close {
     outline: none;

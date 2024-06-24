@@ -1,13 +1,10 @@
-{% extends "index.html" %}
-
-{% block content %}
-  <div class="row" style="height: 94vh;">
-    <div class="col-md-6 d-flex flex-column pr-md-2">
-      <textarea placeholder="Enter some text here!" id="markdown-input" class="form-control flex-grow-1" style="min-height: 100%;"></textarea>
-    </div>
-    <div class="col-md-6 d-flex flex-column position-relative pl-md-2">
-      <div id="html-output" class="output flex-grow-1 border border-secondary p-2 mt-0">Your output is shown here.</div>
-      <div id="counter" class="text-muted position-absolute" style="bottom: 5px; right: 25px;">Words: 0, Characters: 0</div>
-    </div>
+<div class="container-fluid"><div class="row" style="height: 94vh;">
+  <div class="col-md-6 d-flex flex-column pr-md-2">
+    <textarea placeholder="Enter some text here!" id="markdown-input" class="form-control flex-grow-1" style="min-height: 100%;"></textarea>
   </div>
-{% endblock %}
+  <div class="col-md-6 d-flex flex-column position-relative pl-md-2">
+    <div id="html-output" class="output flex-grow-1 border border-secondary p-2 mt-0">Your output is shown here.</div>
+    <div id="counter" class="text-muted position-absolute" style="bottom: 5px; right: 25px;">Words: 0, Characters: 0</div>
+    <button id="copyButton" class="btn position-absolute" style="bottom: 0px; left: 7px;">Copy HTML to Clipboard</button>
+  </div>
+</div>

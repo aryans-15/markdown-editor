@@ -4,11 +4,11 @@ const textareas = document.querySelectorAll('textarea');
 const inputs = document.querySelectorAll('input');
 const navbar = document.querySelector('.navbar');
 const body = document.body;
-const isDarkMode = localStorage.getItem('darkMode') === 'true';
 const aboutModalToggle = document.getElementById('about-modal-toggle');
 const aboutModal = document.getElementById('aboutModal');
 const aboutModalContent = document.getElementById('aboutModalContent');
 const aboutModalClose = document.getElementById('aboutModalClose');
+const copyButton = document.getElementById('copyButton');
 
 function toggleElements(isDark) {
     if (isDark) {
@@ -20,8 +20,8 @@ function toggleElements(isDark) {
     }
     textareas.forEach(textarea => { toggleElementMode(textarea, isDark); });
     inputs.forEach(input => { toggleElementMode(input, isDark); });
-    toggleElementMode(aboutModalContent, isDark);
-    toggleElementMode(aboutModalClose, isDark);
+    [aboutModalContent, aboutModalClose, copyButton].forEach(el => toggleElementMode(el, isDark));
+    copyButton.classList.remove('bg-light', 'bg-dark');
 }
 
 function toggleElementMode(element, isDark) {
@@ -35,6 +35,7 @@ function toggleElementMode(element, isDark) {
 }
 
 function toggleDarkMode() {
+    let isDarkMode = localStorage.getItem('darkMode') === 'true';
     if (isDarkMode) {
         disableDarkMode();
     } else {
@@ -43,7 +44,7 @@ function toggleDarkMode() {
 }
 
 function enableDarkMode() {
-    darkModeToggle.innerText = "Markdown Editor 🌙";
+    darkModeToggle.innerText = "Cortex · Markdown Editor 🌙";
     body.classList.remove('bg-light', 'text-dark');
     body.classList.add('bg-dark', 'text-light');
     localStorage.setItem('darkMode', 'true');
@@ -51,7 +52,7 @@ function enableDarkMode() {
 }
 
 function disableDarkMode() {
-    darkModeToggle.innerText = "Markdown Editor ☀️";
+    darkModeToggle.innerText = "Cortex · Markdown Editor ☀️";
     body.classList.remove('bg-dark', 'text-light');
     body.classList.add('bg-light', 'text-dark');
     localStorage.setItem('darkMode', 'false');
@@ -121,8 +122,26 @@ function modalListener() {
     const aboutModal = new bootstrap.Modal(document.getElementById('aboutModal'));
 
     aboutModalToggle.addEventListener('click', function(event) {
-      event.preventDefault(); // not working
       aboutModal.show();
+    });
+}
+
+function copyListener() {
+    copyButton.addEventListener('click', function() {
+        var textToCopy = document.getElementById('html-output').innerHTML;
+        var tempTextArea = document.createElement('textarea');
+        tempTextArea.value = textToCopy;
+        document.body.appendChild(tempTextArea);
+  
+        tempTextArea.select();
+        tempTextArea.setSelectionRange(0, 99999); 
+        document.execCommand('copy');
+        document.body.removeChild(tempTextArea);
+  
+        this.textContent = 'Copied!';
+        setTimeout(() => {
+          this.textContent = 'Copy HTML to Clipboard';
+        }, 2000); 
     });
 }
 
@@ -130,5 +149,7 @@ document.addEventListener("DOMContentLoaded", function() {
     MDListener();
     counterListener();
     modalListener();
+    copyListener();
     initDarkMode();
+
 });
