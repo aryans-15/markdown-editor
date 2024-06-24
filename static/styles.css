@@ -3,30 +3,15 @@ body, html {
     margin: 0;
     font-size: 14px; 
     line-height: 1.5; 
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    margin-bottom: 0.5em;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    line-height: 1.2;
+    margin-bottom: 0.25em;
 }
 
 p, blockquote {
     margin-bottom: 2em; 
-}
-
-br {
-    display: none; 
-}
-
-.navbar-nav .nav-link {
-    font-size: 12px;
-}
-
-pre {
-    font-size: 12px;
 }
 
 blockquote {
