@@ -151,5 +151,4 @@ document.addEventListener("DOMContentLoaded", function() {
     modalListener();
     copyListener();
     initDarkMode();
-
 });
